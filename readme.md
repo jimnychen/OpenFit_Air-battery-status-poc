@@ -1,4 +1,4 @@
----
+
 
 ### Shokz 電量檢驗 POC（A5 5A / TLV over GATT：FEF2 寫入 → FEF1 通知）
 
@@ -6,7 +6,7 @@
 
 ---
 
-### 協定重點（已實機驗證，詳見 shokz-ble-protocol-analysis.md §4.5 / §4.6 / §8.2）
+### 協定重點
 
 * **指令通道：** 寫入 `0000FEF2-...`（Write Without Response），接收 `0000FEF1-...`（Notify）
 * **指令框：** `A5 5A` + u16LE 全長 + `01 01 00 00` + u16LE TLV 長度 + u16LE CRC-16/MAXIM + TLV
@@ -22,14 +22,14 @@
 ---
 
 ### 用法
-
-* `python3 shokz_battery_poc.py` — 掃描並連上名稱含「Shokz」的裝置。
-* `python3 shokz_battery_poc.py OpenFit` — 以名稱關鍵字尋找裝置。
-* `python3 shokz_battery_poc.py AA:BB:CC:DD:EE:FF` — 直接指定位址（或 macOS 的 UUID）。
-* `python3 shokz_battery_poc.py --scan` — 只列出附近 BLE 裝置。
-* `python3 shokz_battery_poc.py --selftest` — 離線驗證解析邏輯（使用實機錄到的回包）。
-* `python3 shokz_battery_poc.py --raw` — 除錯模式：傾印所有通知的原始 hex。
-* `python3 shokz_battery_poc.py -t 5` — 設定每個指令的等待秒數（預設 3）。
+  - python3 shokz_battery_poc.py                     # 掃描並連上名稱含 "Shokz" 的裝置
+  - python3 shokz_battery_poc.py OpenFit             # 以名稱關鍵字找裝置
+  - python3 shokz_battery_poc.py AA:BB:CC:DD:EE:FF   # 直接指定位址（或 macOS 的 UUID）
+  - python3 shokz_battery_poc.py --scan              # 只列出附近 BLE 裝置
+  - python3 shokz_battery_poc.py --selftest          # 離線驗證解析邏輯（用實機錄到的回包）
+  - python3 shokz_battery_poc.py --raw               # 除錯：傾印所有通知的原始 hex
+  - python3 shokz_battery_poc.py --eq                # 同時查詢 EQ（模式 + 五帶數值）
+  - python3 shokz_battery_poc.py -t 5                # 每個指令的等待秒數（預設 3）
 
 ---
 
